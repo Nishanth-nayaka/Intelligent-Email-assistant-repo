@@ -1,0 +1,18 @@
+const router = require('express').Router();
+const { param, query } = require('express-validator');
+const { authenticate } = require('../middleware/auth');
+const { validate } = require('../middleware/validation');
+const controller = require('../controllers/emailController');
+const id = [param('id').isString().trim().notEmpty(), validate];
+router.use(authenticate);
+router.get('/search', [query('q').trim().notEmpty().withMessage('A search query is required.'), validate], controller.list);
+router.get('/otp', controller.otp);
+router.get('/', controller.list);
+router.get('/:id', id, controller.get);
+router.post('/:id/read', id, controller.read);
+router.post('/:id/unread', id, controller.unread);
+router.post('/:id/star', id, controller.star);
+router.post('/:id/unstar', id, controller.unstar);
+router.post('/:id/archive', id, controller.archive);
+router.delete('/:id', id, controller.remove);
+module.exports = router;

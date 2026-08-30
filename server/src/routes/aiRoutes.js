@@ -1,0 +1,12 @@
+const router = require('express').Router();
+const { param } = require('express-validator');
+const { authenticate } = require('../middleware/auth');
+const { validate } = require('../middleware/validation');
+const controller = require('../controllers/aiController');
+const emailId = [param('emailId').isString().trim().notEmpty(), validate];
+router.use(authenticate);
+router.post('/summarize/:emailId', emailId, controller.summarize);
+router.post('/reply/:emailId', emailId, controller.reply);
+router.post('/explain/:emailId', emailId, controller.explain);
+router.post('/classify/:emailId', emailId, controller.classify);
+module.exports = router;
