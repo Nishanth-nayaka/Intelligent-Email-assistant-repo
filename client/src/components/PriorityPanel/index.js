@@ -2,15 +2,15 @@ import Link from 'next/link';
 import { CalendarDays, ChevronRight, Clock3, ExternalLink, ListChecks } from 'lucide-react';
 
 const priorityStyle = {
-  high: 'border-red-200 bg-red-50 text-red-800',
-  medium: 'border-amber-200 bg-amber-50 text-amber-800',
-  low: 'border-blue-200 bg-blue-50 text-blue-800'
+  high: 'border-red-200 bg-red-50 text-red-800 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300',
+  medium: 'border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-300',
+  low: 'border-blue-200 bg-blue-50 text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300'
 };
 
 const badgeStyle = {
-  high: 'bg-red-100 text-red-800 border border-red-200',
-  medium: 'bg-amber-100 text-amber-800 border border-amber-200',
-  low: 'bg-blue-100 text-blue-800 border border-blue-200'
+  high: 'bg-red-100 text-red-800 border border-red-200 dark:border-red-900 dark:bg-red-950 dark:text-red-300',
+  medium: 'bg-amber-100 text-amber-800 border border-amber-200 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-300',
+  low: 'bg-blue-100 text-blue-800 border border-blue-200 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-300'
 };
 
 const relativeDate = (date) =>
@@ -45,10 +45,10 @@ export default function PriorityPanel({ priorities = [], priorityCounts = { high
       {/* Priority Summary Cards */}
       <section>
         <div className="flex items-center gap-2">
-          <ListChecks size={19} className="text-blue-700" />
+          <ListChecks size={19} className="text-blue-700 dark:text-blue-400" />
           <h2 className="text-lg font-semibold">Today&apos;s priorities</h2>
         </div>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           Click a priority indicator to jump directly to the corresponding tasks.
         </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -69,13 +69,13 @@ export default function PriorityPanel({ priorities = [], priorityCounts = { high
       {/* Detected Tasks & Action Items */}
       <section>
         <h2 className="text-lg font-semibold">Detected tasks and activities</h2>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           AI-extracted details are traceable to the original email.
         </p>
 
         <div className="mt-4 space-y-3">
           {priorities.length === 0 ? (
-            <p className="rounded-xl border border-slate-200 bg-white p-5 text-sm text-slate-600">
+            <p className="rounded-xl border border-slate-200 bg-white p-5 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-800 dark:text-slate-400">
               No actionable priorities were detected in the recent messages.
             </p>
           ) : (
@@ -83,7 +83,7 @@ export default function PriorityPanel({ priorities = [], priorityCounts = { high
               <article
                 id={`priority-${item.priority}`}
                 key={`${item.emailId}-${item.description}`}
-                className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+                className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-slate-800"
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="space-y-1">
@@ -92,39 +92,39 @@ export default function PriorityPanel({ priorities = [], priorityCounts = { high
                     >
                       {item.priority} priority
                     </span>
-                    <h3 className="text-base font-semibold text-slate-900">{item.description}</h3>
-                    <p className="text-sm text-slate-600">{item.reason}</p>
+                    <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">{item.description}</h3>
+                    <p className="text-sm text-slate-600 dark:text-slate-400">{item.reason}</p>
                   </div>
                   <Link
                     href={`/email/${item.emailId}`}
-                    className="inline-flex items-center gap-1 text-sm font-medium text-blue-700 hover:text-blue-900"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
                   >
                     Open email <ChevronRight size={16} />
                   </Link>
                 </div>
 
-                <div className="mt-4 grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+                <div className="mt-4 grid gap-2 text-sm text-slate-700 sm:grid-cols-2 dark:text-slate-300">
                   <p className="flex gap-2">
                     <CalendarDays size={16} className="mt-0.5 shrink-0 text-slate-400" />
                     <span>
-                      <strong className="text-slate-900">When:</strong>{' '}
+                      <strong className="text-slate-900 dark:text-slate-100">When:</strong>{' '}
                       {item.dateLabel || relativeDate(item.date)}
                     </span>
                   </p>
                   <p className="flex gap-2">
                     <Clock3 size={16} className="mt-0.5 shrink-0 text-slate-400" />
                     <span className="truncate">
-                      <strong className="text-slate-900">Source:</strong> {item.sender} — {item.subject}
+                      <strong className="text-slate-900 dark:text-slate-100">Source:</strong> {item.sender} — {item.subject}
                     </span>
                   </p>
                 </div>
 
                 {item.actionItems?.length > 0 && (
-                  <div className="mt-3 rounded-lg bg-slate-50 p-3">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  <div className="mt-3 rounded-lg bg-slate-50 p-3 dark:bg-slate-900/70">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                       Required Actions
                     </p>
-                    <ul className="mt-1 list-inside list-disc space-y-0.5 text-sm text-slate-700">
+                    <ul className="mt-1 list-inside list-disc space-y-0.5 text-sm text-slate-700 dark:text-slate-300">
                       {item.actionItems.map((action) => (
                         <li key={action}>{action}</li>
                       ))}
@@ -140,7 +140,7 @@ export default function PriorityPanel({ priorities = [], priorityCounts = { high
                         href={link}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1 break-all text-xs font-medium text-blue-700 hover:underline"
+                        className="inline-flex items-center gap-1 break-all text-xs font-medium text-blue-700 hover:underline dark:text-blue-400"
                       >
                         <ExternalLink size={13} /> Source link
                       </a>

@@ -6,6 +6,6 @@ export default function ProtectedRoute({ children }) {
   const router = useRouter();
   const { loading, user } = useCurrentUser();
   useEffect(() => { if (!loading && !user) router.replace('/login'); }, [loading, user, router]);
-  if (loading || !user) return <main className="grid min-h-screen place-items-center text-slate-600">Loading your session…</main>;
+  if (loading || !user) return <main className="grid min-h-screen place-items-center text-slate-600 dark:text-slate-400">Loading your session…</main>;
   return children;
 }
