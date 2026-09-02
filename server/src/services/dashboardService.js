@@ -2,9 +2,17 @@ const ai = require('./aiService');
 const gmail = require('./gmailService');
 const priorityService = require('./priorityService');
 
+// TEMPORARY diagnostic timing logs (to be removed after the /api/dashboard
+// 503 investigation). No behavior change.
 async function insights(userId) {
+  const listStart = Date.now();
   const { emails } = await gmail.list(userId, { maxResults: 50 });
+  console.log(`[dashboard-timing] gmail.list(50): ${Date.now() - listStart}ms, count=${emails.length}`);
+
+  const analyzeStart = Date.now();
   const analysis = await ai.analyzeDashboard(emails);
+  console.log(`[dashboard-timing] ai.analyzeDashboard: ${Date.now() - analyzeStart}ms`);
+
   return { emails, analysis };
 }
 
