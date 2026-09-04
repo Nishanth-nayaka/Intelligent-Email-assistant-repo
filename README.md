@@ -127,7 +127,7 @@ npm run test:phase5 --prefix server
 4. **Phase 4 — Intelligent Dashboard & OTP** *(Implemented)*: Today's priorities, dynamic urgency scoring, action item extraction, date/deadline extraction, yesterday's email summary, upcoming activities (tomorrow/in 2 days), direct source-email navigation, and dedicated OTP/verification code section (`/otp`).
 5. **Phase 5 — Email Composition and Activity** *(Implemented)*: Email composition and sending via Gmail, threaded reply sending (AI-generated replies remain editable and are sent only manually), activity logging at the service-operation boundary (exactly one awaited record per action), Sent Mail backed by Gmail's `SENT` messages, an Activity history page with source-email links, and loading/empty/error states across the new flows.
 6. **Phase 6 — Optional Advanced Features** *(Upcoming)*: Google Calendar integration, task confirmation workflows, and tone controls.
-7. **Phase 7 — Security, Testing and Deployment** *(Upcoming)*: Production configuration and deployment to Vercel, Render, and Supabase.
+7. **Phase 7 — Security, Testing and Deployment**: Production configuration and deployment to Vercel, Render, and Supabase.
 
 Post-Phase 5 UI polish is also implemented: a refreshed landing page (value proposition, AI-assisted email concept, feature highlights, and Login/Register actions) and app-wide dark mode with a system-preference default, a persisted manual preference, and a light/dark toggle in the app header and on the landing page.
 
